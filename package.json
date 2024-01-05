@@ -9,6 +9,7 @@
   "type": "module",
   "license": "GPL-3.0-only",
   "scripts": {
+    "exec": "tsup-node src/pages/Members/metadata.ts --watch --clean --format esm --platform node  --onSuccess \"node --enable-source-maps dist/metadata.js\"",
     "dev": "vite",
     "build": "tsc && vite build --base '/'",
     "build:pages": "tsc && vite build --base '/dashboard/'",
@@ -21,6 +22,7 @@
     "locale:order": "node ./.scripts/localeOrderKeys.cjs",
     "locale:validate": "node ./.scripts/localeValidate.cjs",
     "test": "echo 'no test'",
+    "codegen": "polkadot-api",
     "visualizer": "vite-bundle-visualizer"
   },
   "dependencies": {
@@ -32,6 +34,10 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@mdx-js/react": "^3.0.0",
     "@mdx-js/rollup": "^3.0.0",
+    "@polkadot-api/client": "^0.0.1-448f7abbd91f17beac1e703080b901b3ca5ca0c1.1.0",
+    "@polkadot-api/node-polkadot-provider": "^0.0.1-9ec1b77fa23d0b4a103b842511687343a72ff08a.1.0",
+    "@polkadot-api/sc-provider": "^0.0.1-6b090acd3321b98b6306434088c5eba4a2e29edd.1.0",
+    "@polkadot-api/utils": "^0.0.1-6b090acd3321b98b6306434088c5eba4a2e29edd.1.0",
     "@polkadot-cloud/core": "^1.2.0",
     "@polkadot-cloud/react": "^0.1.147",
     "@polkadot-cloud/recipes": "^0.0.10",
@@ -82,6 +88,7 @@
     "prettier": "^3.1.1",
     "prettier-plugin-organize-imports": "^3.2.4",
     "sass": "^1.69.6",
+    "tsup": "^8.0.1",
     "typescript": "^5.3.3",
     "vite": "^5.0.10",
     "vite-bundle-visualizer": "^1.0.0",
@@ -90,5 +97,31 @@
     "vite-plugin-svgr": "^4.2.0",
     "vite-tsconfig-paths": "^4.2.3",
     "vitest": "^1.1.1"
+  },
+  "polkadot-api": {
+    "collective": {
+      "metadata": "collectives-meta.scale",
+      "outputFolder": "./src/pages/Members/descriptors/",
+      "descriptors": {
+        "FellowshipCollective": {
+          "constants": {},
+          "storage": {
+            "Members": "bvc8f0qvh5ljj"
+          },
+          "events": {},
+          "errors": {},
+          "extrinsics": {}
+        },
+        "Identity": {
+          "constants": {},
+          "storage": {
+            "IdentityOf": "4uovu2fu29da6"
+          },
+          "events": {},
+          "errors": {},
+          "extrinsics": {}
+        }
+      }
+    }
   }
 }
